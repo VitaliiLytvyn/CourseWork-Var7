@@ -152,5 +152,21 @@ namespace BLL
         {
             Database.Save(visitors.ToArray());
         } 
+        
+        public void OfferAdd(int i,string title)
+        {
+            if(i>=visitors.Count())
+            visitors[i].Offer.Add(title);
+            else
+            throw new LibraryException("Index out of range");
+        }
+
+        public void RemoveOffer(int i,string title)
+        {
+            if (i >= visitors.Count())
+                visitors[i].Offer.Remove(title);
+            else
+                throw new LibraryException("Index out of range");
+        }
     }
 }
