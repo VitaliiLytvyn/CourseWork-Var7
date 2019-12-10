@@ -224,47 +224,23 @@ namespace PL
         }
 
         private void AddOffer()
-        {
-            Console.WriteLine("Write Author:\n");
-            string aut = Console.ReadLine();
-            Console.WriteLine("Write title:\n");
+        { 
+            Console.WriteLine("Write Title:\n");
             string title = Console.ReadLine();
-            if(docsList.FindByTitle(title).Title==title)
-            {
-                try
-                {
-                    Console.Write("Write index of client who takes book ");
-                    int ind = Convert.ToInt32(Console.ReadLine()) - 1;
-                    if (ind < 0 || ind >= visitorsList.Last)
-                        throw new LibraryException("Index out of range");
-                    
-                    visitorsList.GetInfo(ind - 1).Offer.Add(title);
-                }
-                catch (Exception e) { Console.WriteLine($"{e.Message}\nPress any key to continue..."); Console.ReadKey(); }
-            }
+            Console.Write("Write index of client who takes book ");
+            int ind = Convert.ToInt32(Console.ReadLine()) - 1;
+            visitorsList.OfferAdd(ind, title);
             Console.WriteLine("Succesfull");
             Console.ReadKey();
         }
 
         private void RemoveOffer()
         {
-            Console.WriteLine("Write Author:\n");
-            string aut = Console.ReadLine();
-            Console.WriteLine("Write title:\n");
+            Console.WriteLine("Write Title:\n");
             string title = Console.ReadLine();
-            if (docsList.FindByTitle(title).Title == title)
-            {
-                try
-                {
-                    Console.Write("Write index of client who has book ");
-                    int ind = Convert.ToInt32(Console.ReadLine()) - 1;
-                    if (ind < 0 || ind >= visitorsList.Last)
-                        throw new LibraryException("Index out of range");
-
-                    visitorsList.GetInfo(ind - 1).Offer.Remove(title);
-                }
-                catch (Exception e) { Console.WriteLine($"{e.Message}\nPress any key to continue..."); Console.ReadKey(); }
-            }
+            Console.Write("Write index of client who takes book ");
+            int ind = Convert.ToInt32(Console.ReadLine()) - 1;
+            visitorsList.RemoveOffer(ind, title);
             Console.WriteLine("Succesfull");
             Console.ReadKey();
         }
